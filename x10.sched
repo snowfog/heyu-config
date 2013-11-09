@@ -1,0 +1,98 @@
+# This file may be copied to the name .x10sched.conf in your home directory 
+# after you alter it to fit your needs.  You can't run heyu macro without
+# a file like this.
+
+#Timers set off macros.  They have a start and end date and a start 
+# and end time.  The macro will be executed once a day at the given time
+# The first one works every day of the week from 2/1 through 12/12.
+
+#type  dayofweek  start end   on    off   on_macro  off_macro
+timer  smtwtfs    03/01-11/30 07:00 07:01 outside_off outside_off
+
+# for school
+timer  .mtwtf.    10/20-11/15 06:15 07:05 outside_on outside_off
+timer  .mtwtf.    12/01-12/31 06:15 07:05 outside_on outside_off
+timer  .mtwtf.    01/01-01/10 06:15 07:05 outside_on outside_off
+
+timer  smtwtfs    01/01-12/31 dusk 00:30 lights_on  lights_off
+timer  smtwtfs    01/01-12/31 23:05 23:06 recroom_off recroom_off
+timer  smtwtfs    01/01-12/31 22:35 23:05 front_off front_off
+timer  .mtwtf.    01/01-12/31 09:00 18:00  camera_on   camera_off
+
+#timer  .mtwtf.    01/01-12/31 06:18 18:18 gecko_on    gecko_off
+#timer  s.....s    01/01-12/31 07:30 19:30 gecko_on    gecko_off
+
+## summertime fan is to keep attic cool
+#timer  smtwtfs    07/01-09/06 11:00 17:00 attic_on   attic_off
+
+## wintertime fan is to keep attic dry from showers & cold for ice dams?
+timer  .mtwtf.    12/21-12/31 09:00 10:00 attic_on   attic_off
+timer  .mtwtf.    01/01-03/01 09:00 10:00 attic_on   attic_off
+timer  smtwtfs    12/21-12/31 20:00 20:30 attic_on   attic_off
+timer  smtwtfs    01/01-03/01 20:00 20:30 attic_on   attic_off
+
+
+timer  smtwtfs    11/27-12/31 dusk 23:03 xmas_on    xmas_off
+timer  smtwtfs    12/01-12/31 23:40 03:03 xmas_off    xmas_off
+#timer  smtwtfs    01/01-12/31 21:10 21:21 dining_on   dining_off
+
+
+#TRIGGERS
+# Triggers, or macro initiators, also set off macros
+# The first one runs macro c5off when 'c1 off' is recieved.
+
+#type  triger_unit trigger_command  macro
+#trigger c1          off              c5off
+
+# when driveway on is seen, turn it off an hour later.
+trigger m1 on drvway_off
+trigger m11 on bath_fan_off
+
+# e4 is the dusk sensor (ms13a) outside.  It turns on the living room lamps,
+# but is does not turn them off.
+#trigger e4 on livinroom_on
+
+#MACROS.
+# macros are executed by the triggers and timers.  They can have a label
+# up to 31 characters long.  They can be delayed, and can have multiple 
+# sub commands.  Sub commands are separated by a semicolon ';'.
+
+#The first one has the label c5on, no delay and will turn on module d7, then
+# brighten it to level 22 (of 22 steps) It's executed by the trigger 'c1 on'
+#Tag  label     delay    cmd1       cmd2 ...
+macro bath_fan_off 10	 off m11
+macro recroom_off 0	 off a1
+macro lights_on   0      on m2-4
+macro lights_off  0      off m1-10;off a1
+macro outside_on  0      on m1-6;on n1
+macro outside_off 0      off m1-6;off n1
+macro front_off   0      off m3
+#macro gecko_on    0      on l1
+#macro gecko_off   0      off l1
+macro xmas_on     0      on m7
+macro xmas_off    0      off m7
+macro attic_on    0      on k1
+macro attic_off   0      off k1
+#macro humid_on    0      on k2
+#macro humid_off   0      off k2
+#macro dining_on	  0 	 on m10
+#macro dining_off  0 	 off m10
+macro camera_on	  0	 on m12
+macro camera_off  0	 off m12
+
+# wait 60 minutes and shut off driveway
+macro drvway_off 60   off m1,5
+
+
+#This one waits 5 minutes, then turns off d6 and d7 and turns on e2
+#macro c5off 5   off d6,7;on e2
+
+
+# This one has no delay. It turns off d6 immediately.
+#macro d6off  0 off d6
+
+# And so on.  The macro MUST exist if you use it in a timer or trigger.
+#macro livinroom_on 0 on d4
+#macro livinroom_off 0 off d4
+#macro front_lights_on 0 on l1
+#macro front_lights_off 0 off l1
