@@ -19,9 +19,6 @@ timer  smtwtfs    01/01-12/31 23:05 23:06 recroom_off recroom_off
 timer  smtwtfs    01/01-12/31 22:35 23:05 front_off front_off
 timer  .mtwtf.    01/01-12/31 09:00 18:00  camera_on   camera_off
 
-#timer  .mtwtf.    01/01-12/31 06:18 18:18 gecko_on    gecko_off
-#timer  s.....s    01/01-12/31 07:30 19:30 gecko_on    gecko_off
-
 ## summertime fan is to keep attic cool
 #timer  smtwtfs    07/01-09/06 11:00 17:00 attic_on   attic_off
 
@@ -32,9 +29,10 @@ timer  smtwtfs    12/21-12/31 20:00 20:30 attic_on   attic_off
 timer  smtwtfs    01/01-03/01 20:00 20:30 attic_on   attic_off
 
 
-timer  smtwtfs    11/27-12/31 dusk 23:03 xmas_on    xmas_off
-timer  smtwtfs    12/01-12/31 23:40 03:03 xmas_off    xmas_off
-#timer  smtwtfs    01/01-12/31 21:10 21:21 dining_on   dining_off
+timer  smtwtfs    11/27-12/31 dusk 23:03  xmas_on   xmas_off
+timer  smtwtfs    12/01-12/31 23:40 03:03 xmas_off  xmas_off
+timer  smtwtfs    01/01-01/05 dusk 23:02  xmas_on   xmas_off
+timer  smtwtfs    01/01-01/05 23:40 01:00 xmas_off  xmas_off
 
 
 #TRIGGERS
