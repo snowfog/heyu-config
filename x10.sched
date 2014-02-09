@@ -22,11 +22,11 @@ timer  .mtwtf.    01/01-12/31 09:00 18:00  camera_on   camera_off
 ## summertime fan is to keep attic cool
 #timer  smtwtfs    07/01-09/06 11:00 17:00 attic_on   attic_off
 
-## wintertime fan is to keep attic dry from showers & cold for ice dams?
-timer  .mtwtf.    12/21-12/31 09:00 10:00 attic_on   attic_off
-timer  .mtwtf.    01/01-03/01 09:00 10:00 attic_on   attic_off
-timer  smtwtfs    12/21-12/31 20:00 20:30 attic_on   attic_off
-timer  smtwtfs    01/01-03/01 20:00 20:30 attic_on   attic_off
+## wintertime fan is to keep attic dry from showers
+timer  .mtwtf.    12/21-12/31 06:00 09:00 attic_on   attic_off
+timer  .mtwtf.    01/01-03/01 06:00 09:00 attic_on   attic_off
+timer  smtwtfs    12/21-12/31 20:00 21:00 attic_on   attic_off
+timer  smtwtfs    01/01-03/01 20:00 21:00 attic_on   attic_off
 
 
 timer  smtwtfs    11/27-12/31 dusk 23:03  xmas_on   xmas_off
@@ -43,8 +43,9 @@ timer  smtwtfs    01/01-01/05 23:40 01:00 xmas_off  xmas_off
 #trigger c1          off              c5off
 
 # when driveway on is seen, turn it off an hour later.
-trigger m1 on drvway_off
+#trigger m1 on drvway_off
 trigger m11 on bath_fan_off
+trigger l11 on up_bath_fan_off
 
 # e4 is the dusk sensor (ms13a) outside.  It turns on the living room lamps,
 # but is does not turn them off.
@@ -59,6 +60,7 @@ trigger m11 on bath_fan_off
 # brighten it to level 22 (of 22 steps) It's executed by the trigger 'c1 on'
 #Tag  label     delay    cmd1       cmd2 ...
 macro bath_fan_off 10	 off m11
+macro up_bath_fan_off 60 off l11
 macro recroom_off 0	 off a1
 macro lights_on   0      on m2-4
 macro lights_off  0      off m1-10;off a1
